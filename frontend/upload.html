@@ -4,17 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload a photo</title>
+    <Link rel="stylesheet" href="main.css"></Link>
   </head>
   <body>
-    <form action="" id="upload">
+    <div class="uploadcontainer">
+    <form action="" id="upload" class="upload">
       <label for="title">Art Title:</label>
-      <input type="text" placeholder="title" id="title" required />
+      <input type="text" placeholder="title" id="title" required /><br><br>
       <label for="author">Art Creator:</label>
-      <input type="text" placeholder="author" id="author" required />
+      <input type="text" placeholder="author" id="author" required /><br><br>
       <label for="photo">Add Photo</label>
-      <input type="file" id="photo" required />
+      <input type="file" id="photo" required /><br><br>
       <button type="submit">Upload your Photo</button>
     </form>
+  </div>
 
     <script>
       let form = document.getElementById("upload");
@@ -48,6 +51,7 @@
             .then((response) => {
               if (response.status === 201) {
                 console.log("Photo uploaded successfully");
+                window.location.href = "feed.html";
               } else {
                 console.error("Failed to upload photo");
               }
@@ -60,5 +64,6 @@
         reader.readAsDataURL(photoFile);
       });
     </script>
+    <a href="feed.html">go back to the feed</a>
   </body>
 </html>
