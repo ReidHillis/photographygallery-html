@@ -1,11 +1,13 @@
 import express, { json } from "express";
 import sqlite3 from "sqlite3";
 const { Database } = sqlite3;
+import cors from "cors";
 
 const db = new Database("db.sqlite");
 
 const server = express();
-server.use(json());
+server.use(cors());
+server.use(json({ limit: "50mb" }));
 
 db.run(`CREATE TABLE IF NOT EXISTS photos (
     id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
@@ -40,7 +42,7 @@ server.get("/getPhoto", (req, res) => {
     }
 
     if (row) {
-      return res.send(row);
+      return res.status(200).send(row);
     } else {
       return res.status(404).send("Photo not found");
     }

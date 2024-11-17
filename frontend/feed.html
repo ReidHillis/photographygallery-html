@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse Photos</title>
+    <Link rel="stylesheet" href="feed.css" type="text/css"></Link>
+  </head>
+  <body>
+    <div id="photoContainer"></div>
+    <script>
+      const photoContainer = document.getElementById("photoContainer");
+
+      // some of these will be none, before enough people add to the website, there will not be
+      // 10 photos so we need to account for that
+      // as well when someone deletes a photo that id remains taken in the sql database
+      // probably do a while loop that iterates until 20 images are rendered with a failsafe 
+      // incase their arnt enough images
+
+      for (let i = 1; i < 10; i++) {
+        fetch(`http://localhost:3000/getPhoto?id=${i}`)
+          .then((response) => {
+            if (response.status === 200) {
+              return response.json();
+            } else {
+              return None;
+            }
+          })
+          .then((data) => {
+            if (data) {
+              const img = document.createElement("img");
+
+              img.src = `data:image/jpeg;base64,${data.photoData}`;
+
+              img.classList.add("photo");
+
+              photoContainer.appendChild(img);
+            } else {
+              console.error("No photo data received");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching photo:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

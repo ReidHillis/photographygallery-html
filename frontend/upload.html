@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload a photo</title>
+  </head>
+  <body>
+    <form action="" id="upload">
+      <label for="title">Art Title:</label>
+      <input type="text" placeholder="title" id="title" required />
+      <label for="author">Art Creator:</label>
+      <input type="text" placeholder="author" id="author" required />
+      <label for="photo">Add Photo</label>
+      <input type="file" id="photo" required />
+      <button type="submit">Upload your Photo</button>
+    </form>
+
+    <script>
+      let form = document.getElementById("upload");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const photoFile = document.getElementById("photo").files[0];
+
+        if (!photoFile) {
+          console.error("No file selected");
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          const photoData = {
+            title: document.getElementById("title").value,
+            author: document.getElementById("author").value,
+            photoData: reader.result.split(",")[1],
+          };
+
+          fetch("http://localhost:3000/uploadPhoto", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(photoData),
+          })
+            .then((response) => {
+              if (response.status === 201) {
+                console.log("Photo uploaded successfully");
+              } else {
+                console.error("Failed to upload photo");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        };
+
+        reader.readAsDataURL(photoFile);
+      });
+    </script>
+  </body>
+</html>
