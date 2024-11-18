@@ -7,12 +7,12 @@
     <Link rel="stylesheet" href="main.css"></Link>
   </head>
   <body>
-    <div class="uploadcontainer">
+  <div class="uploadcontainer">
     <form action="" id="upload" class="upload">
-      <label for="title">Art Title:</label>
-      <input type="text" placeholder="title" id="title" required /><br><br>
-      <label for="author">Art Creator:</label>
-      <input type="text" placeholder="author" id="author" required /><br><br>
+      <label for="title">Photo Title:</label>
+      <input type="text" placeholder="Title" id="title" required /><br><br>
+      <label for="author">Photographer:</label>
+      <input type="text" placeholder="Photographer" id="author" required /><br><br>
       <label for="photo">Add Photo</label>
       <input type="file" id="photo" required /><br><br>
       <button type="submit">Upload your Photo</button>
@@ -64,6 +64,6 @@
         reader.readAsDataURL(photoFile);
       });
     </script>
-    <a href="feed.html">go back to the feed</a>
+    <a href="feed.html">Go Back to Feed</a>
   </body>
 </html>
