@@ -11,8 +11,6 @@
     </header>
   <body>
     <div id="photoContainer"></div>
-
-    <div id="photoContainer"></div>
     
     <div class="modal" id="photoModal">
       <span class="close" id="closeModal">&times;</span>
@@ -60,12 +58,30 @@
               title.textContent = `Title: ${data.title}`;
 
               const artist = document.createElement("p");
-              artist.textContent = `Artist: ${data.author}`
+              artist.textContent = `Photographer: ${data.author}`
 
+
+              const deleteButton = document.createElement("button");
+              deleteButton.textContent = "Delete";
+              deleteButton.addEventListener("click", () => {
+                fetch(`http://localhost:3000/deletePhoto?id=${data.id}`, {
+                  method: "GET",
+                })
+                  .then((response) => {
+                    if (response.status === 204) {
+                      alert("Photo deleted");
+                      artworkDiv.remove();
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error deleting photo:", error);
+                  });
+              });
 
               artworkDiv.appendChild(img);
               artworkDiv.appendChild(title);
               artworkDiv.appendChild(artist);
+              artworkDiv.appendChild(deleteButton);
 
               photoContainer.appendChild(artworkDiv);
 
