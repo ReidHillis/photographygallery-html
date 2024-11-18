@@ -135,3 +135,37 @@ footer {
   color: white;
   text-align: center;
 }
+
+#contactSection {
+  display: none;
+  transition: max-height 0.3s ease-out;
+  overflow: hidden;
+  border: 10px;
+}
+
+#contactSection.active {
+  display: block;
+}
+
+form {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px grey;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
