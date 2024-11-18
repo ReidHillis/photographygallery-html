@@ -23,7 +23,7 @@
 #photoContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 100px;
   padding: 20px;
   margin: 0 auto;
   justify-items: center;
