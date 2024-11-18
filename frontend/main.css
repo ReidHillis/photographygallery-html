@@ -1,5 +1,5 @@
 .photo {
-  width: 175%;
+  width: 200%;
   height: 250px;
   border: 7px solid black;
   border-radius: 10px;
@@ -13,7 +13,7 @@
 }
 
 .upload {
-  border: solid black 1px;
+  border: solid black 3px;
   padding: 50px;
   width: 300px;
   height: 150px;
@@ -24,11 +24,16 @@
 
 #photoContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  gap: 100px;
+  grid-template-columns: repeat(3, 1fr);  gap: 50px;
   padding: 20px;
   margin: 0 auto;
   justify-items: center;
 }
+
+#photoContainer div button {
+  margin-top: 15px;
+}
+
 
 #photoContainer div {
   display: flex;
@@ -37,8 +42,9 @@
 }
 
 #photoContainer div p {
-  padding-top: 10px;
-  margin: 5px 0;
+  padding-top: 20px;
+  margin: 0px 0;
+  white-space: nowrap;
 }
 
 header {
@@ -47,6 +53,13 @@ header {
   padding: 20px;
   box-shadow: 0 4px 6px grey;
   margin-bottom: 20px;
+}
+
+header h2 {
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0;
 }
 
 body {
@@ -65,6 +78,8 @@ a, button {
 
 a {
   padding: 10px 20px;
+  margin-top: 20px;
+  display: inline-block;
 }
 
 button {
@@ -72,7 +87,13 @@ button {
 }
 
 
+
 a:hover {
+  background-color: #365890;
+  cursor: pointer;
+}
+
+button:hover{
   background-color: #365890;
   cursor: pointer;
 }
@@ -93,3 +114,4 @@ a:hover {
   max-width: 90%;
   max-height: 90%;
 }
+
