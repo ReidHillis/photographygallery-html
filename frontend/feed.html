@@ -28,13 +28,29 @@
           })
           .then((data) => {
             if (data) {
+              const artworkDiv = document.createElement("div");
+              artworkDiv.style.textAlign = "center"; // Center text alignment
+              artworkDiv.style.width = "200px";
+
               const img = document.createElement("img");
-
               img.src = `data:image/jpeg;base64,${data.photoData}`;
-
               img.classList.add("photo");
 
-              photoContainer.appendChild(img);
+              const title = document.createElement("p");
+              title.textContent = `Title: ${data.title}`;
+
+              const artist = document.createElement("p");
+              artist.textContent = `Artist: ${data.author}`
+
+
+              artworkDiv.appendChild(img);
+              artworkDiv.appendChild(title);
+              artworkDiv.appendChild(artist);
+
+              photoContainer.appendChild(artworkDiv);
+
+
+
             } else {
               console.error("No photo data received");
             }
@@ -44,6 +60,6 @@
           });
       }
     </script>
-    <a href="upload.html">upload a photo</a>
+    <a href="upload.html">Upload a Photo</a>
   </body>
 </html>
