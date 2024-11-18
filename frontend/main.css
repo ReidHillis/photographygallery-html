@@ -34,6 +34,14 @@
   margin: 5px 0;
 }
 
+header {
+  background-color: #4267B2;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 4px 6px grey;
+  margin-bottom: 20px;
+}
+
 body {
   text-align: center;
   background-color: #bfbfbf;
