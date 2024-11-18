@@ -5,6 +5,11 @@
   border-radius: 10px;
 }
 
+.photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px grey;
+}
+
 .upload {
   border: solid black 1px;
   padding: 50px;
