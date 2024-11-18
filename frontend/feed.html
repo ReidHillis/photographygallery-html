@@ -7,8 +7,10 @@
     <Link rel="stylesheet" href="main.css"></Link>
   </head>
   <header>
-      <h2>Photography Gallery</h2>
-    </header>
+    <h2>Photography Gallery</h2>
+
+  </header>
+
   <body>
     <div id="photoContainer"></div>
     
@@ -30,7 +32,7 @@
       // probably do a while loop that iterates until 20 images are rendered with a failsafe
       // incase their arnt enough images
 
-      for (let i = 1; i < 10; i++) {
+      for (let i = 1; i < 20; i++) {
         fetch(`http://localhost:3000/getPhoto?id=${i}`)
           .then((response) => {
             if (response.status === 200) {
@@ -69,7 +71,6 @@
                 })
                   .then((response) => {
                     if (response.status === 204) {
-                      alert("Photo deleted");
                       artworkDiv.remove();
                     }
                   })
@@ -103,6 +104,6 @@
       });
       
     </script>
-    <a href="upload.html">Upload a Photo</a>
+    <a href="upload.html">Upload Photo</a>
   </body>
 </html>
