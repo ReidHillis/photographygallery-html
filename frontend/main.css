@@ -8,8 +8,9 @@
 }
 
 .photo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 6px grey;
+  transform: scale(1.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .upload {
@@ -159,13 +160,10 @@ a:active, button:active {
 }
 
 footer {
-  margin-top: 40px;
-  padding: 20px 0;
-  background-color: #4267b2;
-  color: white;
-  text-align: center;
+  background: linear-gradient(90deg, #4267b2, #365890);
+  padding: 10px 20px;
   font-size: 14px;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+  color: white; 
 }
 
 #contactSection {
