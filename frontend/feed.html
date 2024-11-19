@@ -12,12 +12,7 @@
     <a class="nav-link" href="#contactSection" id="toggleContact">Feedback</a>
   </nav>
   <h2>Photography Gallery</h2>
-  <nav class="right-nav" id="right-nav">
-    <!-- <a href="upload.html">Upload</a> -->
-  </nav>
-  <nav class="right-nav" id="right-nav">
-    <a href="feedback.html">View Feedback</a>
-  </nav>
+  <nav class="right-nav" id="right-nav"></nav>
 </header>
 
   <body>
@@ -146,18 +141,22 @@
         })
         header.appendChild(usernameDisplay);
         header.appendChild(logout);
-        linktoupload = document.createElement("a");
-        linktoupload.textContent = "Upload";
-        linktoupload.href = "upload.html";
-        let rightnav = document.getElementById("right-nav");
-        rightnav.appendChild(linktoupload);
+        let linkToUpload = document.createElement("a");
+        linkToUpload.textContent = "Upload";
+        linkToUpload.href = "upload.html";
+        let rightNav = document.getElementById("right-nav");
+        rightNav.appendChild(linkToUpload);
+        let linkToFeedback = document.createElement("a");
+        linkToFeedback.textContent="View Feedback";
+        linkToFeedback.href = "feedback.html";
+        rightNav.appendChild(linkToFeedback);
       }
 
       const toggleContact = document.getElementById("toggleContact");
       const contactSection = document.getElementById("contactSection");
 
       toggleContact.addEventListener("click", (e) => {
-        e.preventDefault(); // Prevent default anchor behavior
+        e.preventDefault();
         contactSection.classList.toggle("active");
       });
 
@@ -195,10 +194,9 @@
           });
       });
 
-      // Function to display a photo (reused for search results)
       function displayPhoto(data) {
         const artworkDiv = document.createElement("div");
-        artworkDiv.style.textAlign = "center"; // Center text alignment
+        artworkDiv.style.textAlign = "center";
         artworkDiv.style.width = "200px";
 
         const img = document.createElement("img");
@@ -235,7 +233,7 @@
           .then((data) => {
             if (data) {
               const artworkDiv = document.createElement("div");
-              artworkDiv.style.textAlign = "center"; // Center text alignment
+              artworkDiv.style.textAlign = "center"; 
               artworkDiv.style.width = "200px";
 
               const img = document.createElement("img");
