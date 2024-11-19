@@ -21,6 +21,7 @@
   margin: 30px auto;
   border-radius: 10%;
   background-color: white;
+  animation: slideIn 0.5s ease;
 }
 
 #photoContainer {
@@ -224,4 +225,15 @@ h3 {
   position: absolute;
   right: 20px;
   top: 20px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
