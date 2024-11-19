@@ -9,11 +9,14 @@
 
   <header id="header">
   <nav class="left-nav">
-    <a class="nav-link" href="#contactSection" id="toggleContact">Contact</a>
+    <a class="nav-link" href="#contactSection" id="toggleContact">Feedback</a>
   </nav>
   <h2>Photography Gallery</h2>
   <nav class="right-nav" id="right-nav">
     <!-- <a href="upload.html">Upload</a> -->
+  </nav>
+  <nav class="right-nav" id="right-nav">
+    <a href="feedback.html">View Feedback</a>
   </nav>
 </header>
 
@@ -28,7 +31,7 @@
      <div class="container" id="contactSection">
       <div class="card">
         <div class="card-header">
-          <h5>Contact Us</h5>
+          <h5>Send Feedback</h5>
         </div>
         <div class="card-body">
           <form>
@@ -67,6 +70,34 @@
     </div>
 
     <script>
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+
+        if (name && email && message) {
+          const feedbackMessages = JSON.parse(localStorage.getItem('feedbackMessages')) || [];
+
+          feedbackMessages.push({ name, email, message });
+
+          localStorage.setItem('feedbackMessages', JSON.stringify(feedbackMessages));
+
+          form.reset();
+
+          const contactSection = document.getElementById('contactSection');
+          contactSection.classList.remove('active');
+
+          alert('Your feedback has been submitted!');
+        } else {
+          alert('Please fill out all fields.');
+        }
+      });
+
+
+
 
       let username = localStorage.getItem("username");
       let sessionKey = localStorage.getItem("sessionKey");
