@@ -177,26 +177,22 @@ footer {
 }
 
 form {
-  padding: 20px;
+  padding: 25px;
   background-color: white;
-  border: 1px solid black;
-  border-radius: 10px;
-  max-width: 300px;
-  margin: 50px auto;
-}
-
-form label {
-  font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 350px;
+  margin: 40px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 form input, form textarea {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid grey;
+  padding: 12px 15px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  box-sizing: border-box;
 }
 
 h3 {
