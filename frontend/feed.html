@@ -6,12 +6,18 @@
     <title>Browse Photos</title>
     <Link rel="stylesheet" href="main.css"></Link>
   </head>
-  <header id="header">
-      <h2>Photography Gallery</h2>
-    </header>
-  <body>
-    <div id="photoContainer"></div>
 
+  <header id="header">
+  <nav class="left-nav">
+    <a class="nav-link" href="#contactSection" id="toggleContact">Contact</a>
+  </nav>
+  <h2>Photography Gallery</h2>
+  <nav class="right-nav" id="right-nav">
+    <!-- <a href="upload.html">Upload</a> -->
+  </nav>
+</header>
+
+  <body>
     <div id="photoContainer"></div>
     
     <div class="modal" id="photoModal">
@@ -19,6 +25,47 @@
       <img id="modalImg" alt="Enlarged Photo" />
     </div>
     
+     <div class="container" id="contactSection">
+      <div class="card">
+        <div class="card-header">
+          <h5>Contact Us</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="contactName" class="form-label">Name</label><br />
+              <input
+                type="text"
+                class="form-control"
+                id="contactName"
+                placeholder="Your Name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="contactEmail" class="form-label">Email address</label
+              ><br />
+              <input
+                type="email"
+                class="form-control"
+                id="contactEmail"
+                placeholder="Your Email"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="contactMessage" class="form-label">Message</label><br />
+              <textarea
+                class="form-control"
+                id="contactMessage"
+                rows="3"
+                placeholder="Your Message"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script>
 
       let username = localStorage.getItem("username");
@@ -50,10 +97,19 @@
         header.appendChild(usernameDisplay);
         header.appendChild(logout);
         linktoupload = document.createElement("a");
-        linktoupload.textContent = "Upload a photo";
+        linktoupload.textContent = "Upload";
         linktoupload.href = "upload.html";
-        document.body.appendChild(linktoupload);
+        let rightnav = document.getElementById("right-nav");
+        rightnav.appendChild(linktoupload);
       }
+
+      const toggleContact = document.getElementById("toggleContact");
+      const contactSection = document.getElementById("contactSection");
+
+      toggleContact.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent default anchor behavior
+        contactSection.classList.toggle("active");
+      });
 
       const photoContainer = document.getElementById("photoContainer");
 
@@ -67,7 +123,7 @@
       // probably do a while loop that iterates until 20 images are rendered with a failsafe
       // incase their arnt enough images
 
-      for (let i = 1; i < 10; i++) {
+      for (let i = 1; i < 30; i++) {
         fetch(`http://localhost:3000/getPhoto?id=${i}`)
           .then((response) => {
             if (response.status === 200) {
@@ -95,11 +151,26 @@
               title.textContent = `Title: ${data.title}`;
 
               const artist = document.createElement("p");
-              artist.textContent = `Artist: ${data.author}`;
-
+              artist.textContent = `Photographer: ${data.author}`
               const description = document.createElement("p");
               description.textContent = `description: ${data.description}`;
 
+
+              const deleteButton = document.createElement("button");
+              deleteButton.textContent = "Delete";
+              deleteButton.addEventListener("click", () => {
+                fetch(`http://localhost:3000/deletePhoto?id=${data.id}`, {
+                  method: "GET",
+                })
+                  .then((response) => {
+                    if (response.status === 204) {
+                      artworkDiv.remove();
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error deleting photo:", error);
+                  });
+              });
 
               artworkDiv.appendChild(img);
               artworkDiv.appendChild(title);
@@ -127,4 +198,8 @@
       
     </script>
   </body>
+  <footer>
+    <p>Website designed by Jonathan Leaper, Reid Hillis, Drew Glover, & Mustafa Hussain.</p>
+  </footer>
+
 </html>
