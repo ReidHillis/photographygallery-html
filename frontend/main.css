@@ -158,11 +158,13 @@ a:active, button:active {
 }
 
 footer {
-  margin-top: 20px;
-  padding: 4px;
+  margin-top: 40px;
+  padding: 20px 0;
   background-color: #4267b2;
   color: white;
   text-align: center;
+  font-size: 14px;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
 }
 
 #contactSection {
