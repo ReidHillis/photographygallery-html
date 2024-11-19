@@ -112,15 +112,24 @@
       let username = localStorage.getItem("username");
       let sessionKey = localStorage.getItem("sessionKey");
 
-      if (!username){
-        linktologin = document.createElement("a");
-        linktologin.textContent = "login";
-        linktologin.href = "login.html";
-        linktoregister = document.createElement("a");
-        linktoregister.textContent = "create an account"
-        linktoregister.href = "register.html";
-        document.body.appendChild(linktologin);
-        document.body.appendChild(linktoregister);
+      if (!username) {
+        rightNav = document.getElementById("right-nav");
+        mainButtons = document.createElement("div");
+        mainButtons.classList.add("main-buttons")
+
+        linkToLogin = document.createElement("a");
+        linkToLogin.textContent = "Login";
+        linkToLogin.href = "login.html";
+        linkToLogin.classList.add("btn", "login"); 
+        linkToRegister = document.createElement("a");
+        linkToRegister.textContent = "Create an account";
+        linkToRegister.href = "register.html";
+        linkToRegister.classList.add("btn", "createAccount"); 
+
+        mainButtons.appendChild(linkToLogin);
+        mainButtons.appendChild(linkToRegister);
+
+        rightNav.appendChild(mainButtons)
       }
 
       if (username){
@@ -128,7 +137,7 @@
         let usernameDisplay = document.createElement("h3");
         usernameDisplay.textContent = username;
         logout = document.createElement("button");
-        logout.textContent ="logout";
+        logout.textContent ="Logout";
         logout.id = "logout";
         logout.addEventListener("click", (event) => {
           localStorage.removeItem('username');
@@ -244,7 +253,7 @@
               const artist = document.createElement("p");
               artist.textContent = `Photographer: ${data.author}`
               const description = document.createElement("p");
-              description.textContent = `description: ${data.description}`;
+              description.textContent = `Description: ${data.description}`;
 
 
               const deleteButton = document.createElement("button");
