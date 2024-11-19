@@ -86,6 +86,24 @@ server.get("/getPhoto", (req, res) => {
   });
 });
 
+server.get("/getAllPhotos", (req, res) => {
+  let data = req.query;
+  let statement = db.prepare(`SELECT * FROM photos`);
+
+  statement.all((err, rows) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error retrieving photos");
+    }
+
+    if (rows) {
+      return res.status(200).json(rows);
+    } else {
+      return res.status(404).send("Photos not found");
+    }
+  });
+});
+
 server.get("/addLike", (req, res) => {
   // should have database for posts users have liked
   let data = req.query;
