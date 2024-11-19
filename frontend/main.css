@@ -60,7 +60,8 @@ header {
   position: fixed;
   justify-content: space-between;
   align-items: center;
-  background-color: #4267b2;
+  background: #4267b2; /* Fallback color */
+  background: linear-gradient(90deg, #4267b2, #365890); /* Gradient */
   color: white;
   padding: 20px;
   box-shadow: 0 4px 6px grey;
@@ -103,36 +104,26 @@ body h5 {
   width: fit-content;
 }
 
-body h5 {
-  font-size: 30px;
-  margin-bottom: 10px;
-  background-color: white;
-  border-radius: 7px;
-  padding: 15px 20px;
-  margin: 20px auto;
-  width: fit-content;
-}
-
-/* Style for links and buttons */
 a, button {
-  background-color: #4267b2;  
-  color: white; 
-  border: 1px solid transparent;  
-  border-radius: 5px; 
-  padding: 12px 20px;  
-  font-size: 16px;  
-  cursor: pointer;  
-  transition: all 0.3s ease;  /* Smooth transition for hover and active states */
+  background-color: #4267b2;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
 }
 
-/* Hover state */
 a:hover, button:hover {
-  background-color: #365890;  
-  transform: translateY(-2px);  
+  background-color: #284473; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  transform: translateY(-2px); 
 }
 
 a:active, button:active {
-  transform: translateY(2px);  
+  transform: scale(0.98); /* Adds a pressed effect */
 }
 
 .main-buttons a, .main-buttons button {
