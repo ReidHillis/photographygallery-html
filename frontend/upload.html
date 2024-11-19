@@ -11,9 +11,9 @@
   <div class="uploadcontainer">
     <form action="" id="upload" class="upload">
       <label for="title">Photo Title:</label>
-      <input type="text" placeholder="title" id="title" required /><br><br>
+      <input type="text" placeholder="Title" id="title" required /><br><br>
       <label for="description">Photo description:</label>
-      <textarea placeholder="description" id="description" required></textarea><br><br>
+      <input type="text" placeholder="Description" id="description" required /><br><br>
       <label for="photo">Add Photo</label>
       <input type="file" id="photo" required /><br><br>
       <button type="submit">Upload your Photo</button>
@@ -32,7 +32,7 @@
         let usernameDisplay = document.createElement("h3");
         usernameDisplay.textContent = username;
         logout = document.createElement("button");
-        logout.textContent ="logout";
+        logout.textContent ="Logout";
         logout.id = "logout";
         logout.addEventListener("click", (event) => {
           localStorage.removeItem('username');
@@ -87,6 +87,6 @@
         reader.readAsDataURL(photoFile);
       });
     </script>
-    <a href="feed.html">Go Back to Feed</a>
+    <a href="feed.html">Back to Feed</a>
   </body>
 </html>
