@@ -74,9 +74,10 @@
               if (response.status === 201) {
                 console.log("Photo uploaded successfully");
                 window.location.href = "feed.html";
-              } else {
-                console.error("Failed to upload photo");
-                console.error("error code " + response.status)
+              } else if (response.status == 500){
+                let message = document.createElement("p");
+                message.textContent = "Photo with this title already exists!";
+                document.body.appendChild(message);
               }
             })
             .catch((error) => {
