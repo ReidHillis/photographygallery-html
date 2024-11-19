@@ -21,6 +21,16 @@
 </header>
 
   <body>
+    <div style="margin: 20px;">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search photos by title or photographer"
+        style="padding: 10px; width: 80%; font-size: 16px;"
+      />
+      <button id="searchButton" style="padding: 10px;">Search</button>
+    </div>
+    
     <div id="photoContainer"></div>
     
     <div class="modal" id="photoModal">
@@ -148,11 +158,61 @@
       const modalImg = document.getElementById('modalImg');
       const closeModal = document.getElementById('closeModal');      
 
-      // some of these will be none, before enough people add to the website, there will not be
-      // 10 photos so we need to account for that
-      // as well when someone deletes a photo that id remains taken in the sql database
-      // probably do a while loop that iterates until 20 images are rendered with a failsafe
-      // incase their arnt enough images
+       // Added search functionality (lines below)
+      const searchInput = document.getElementById("searchInput");
+      const searchButton = document.getElementById("searchButton");
+
+      searchButton.addEventListener("click", () => {
+        const searchQuery = searchInput.value.toLowerCase();
+        photoContainer.innerHTML = ""; // Clear existing photos
+
+        fetch(`http://localhost:3000/getAllPhotos`)
+          .then((response) => response.json())
+          .then((photos) => {
+            const filteredPhotos = photos.filter(
+              (photo) =>
+                photo.title.toLowerCase().includes(searchQuery) ||
+                photo.author.toLowerCase().includes(searchQuery)
+            );
+
+            if (filteredPhotos.length > 0) {
+              filteredPhotos.forEach((photo) => displayPhoto(photo));
+            } else {
+              photoContainer.innerHTML = "<p>No photos found.</p>";
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching photos:", error);
+          });
+      });
+
+      // Function to display a photo (reused for search results)
+      function displayPhoto(data) {
+        const artworkDiv = document.createElement("div");
+        artworkDiv.style.textAlign = "center"; // Center text alignment
+        artworkDiv.style.width = "200px";
+
+        const img = document.createElement("img");
+        img.src = `data:image/jpeg;base64,${data.photoData}`;
+        img.classList.add("photo");
+
+        img.addEventListener("click", () => {
+          modal.style.display = "flex";
+          modalImg.src = img.src;
+        });
+
+        const title = document.createElement("p");
+        title.textContent = `Title: ${data.title}`;
+
+        const artist = document.createElement("p");
+        artist.textContent = `Photographer: ${data.author}`;
+
+        artworkDiv.appendChild(img);
+        artworkDiv.appendChild(title);
+        artworkDiv.appendChild(artist);
+
+        photoContainer.appendChild(artworkDiv);
+      }
 
       for (let i = 1; i < 30; i++) {
         fetch(`http://localhost:3000/getPhoto?id=${i}`)
