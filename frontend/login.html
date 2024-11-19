@@ -42,8 +42,10 @@
 
               window.location.href = "feed.html";
             });
-          } else {
-            console.error("Login Failed");
+          } else if (response.status == 401) {
+            let message = document.createElement("p");
+            message.textContent = "Incorrect password";
+            document.body.appendChild(message);
           }
         });
       });

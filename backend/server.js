@@ -194,10 +194,12 @@ server.post("/login", (req, res) => {
   let get_statement = db.prepare(`SELECT * FROM users WHERE username = ?`);
   get_statement.get(username, (err, result) => {
     if (err) {
-      res.status(500).send("user does not exist");
-      return;
+      return res.status(500).send("server error");
     }
 
+    if (!result) {
+      return res.status(401).send("incorrect password");
+    }
     let hashed_pass = result.password;
 
     bcrypt.compare(password, hashed_pass, (error, validation) => {

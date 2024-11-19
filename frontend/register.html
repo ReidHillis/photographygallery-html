@@ -42,8 +42,10 @@
 
               window.location.href = "feed.html";
             });
-          } else {
-            console.error("Account creation failed.");
+          } else if (response.status == 409) {
+            let message = document.createElement("p");
+            message.textContent = "user already exists";
+            document.body.appendChild(message);
           }
         });
       });
