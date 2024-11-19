@@ -62,8 +62,8 @@ header {
   position: fixed;
   justify-content: space-between;
   align-items: center;
-  background: #4267b2; /* Fallback color */
-  background: linear-gradient(90deg, #4267b2, #365890); /* Gradient */
+  background: #4267b2;
+  background: linear-gradient(90deg, #4267b2, #365890);
   color: white;
   padding: 20px;
   box-shadow: 0 4px 6px grey;
@@ -115,7 +115,7 @@ a, button {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
 a:hover, button:hover {
@@ -125,7 +125,7 @@ a:hover, button:hover {
 }
 
 a:active, button:active {
-  transform: scale(0.98); /* Adds a pressed effect */
+  transform: scale(0.98); 
 }
 
 .main-buttons a, .main-buttons button {
