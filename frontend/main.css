@@ -113,32 +113,30 @@ body h5 {
   width: fit-content;
 }
 
-a,
-button {
-  background-color: #4267b2;
-  color: white;
-  border: 1px solid black;
-  border-radius: 4px;
+/* Style for links and buttons */
+a, button {
+  background-color: #4267b2;  
+  color: white; 
+  border: 1px solid transparent;  
+  border-radius: 5px; 
+  padding: 12px 20px;  
+  font-size: 16px;  
+  cursor: pointer;  
+  transition: all 0.3s ease;  /* Smooth transition for hover and active states */
 }
 
-a {
-  padding: 10px 20px;
-  margin-top: 20px;
-  display: inline-block;
+/* Hover state */
+a:hover, button:hover {
+  background-color: #365890;  
+  transform: translateY(-2px);  
 }
 
-button {
-  padding: 5px 10px;
+a:active, button:active {
+  transform: translateY(2px);  
 }
 
-a:hover {
-  background-color: #365890;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #365890;
-  cursor: pointer;
+.main-buttons a, .main-buttons button {
+  margin-right: 10px;  
 }
 
 .modal {
