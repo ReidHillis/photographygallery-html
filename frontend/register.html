@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create an Account</title>
+  </head>
+  <body>
+    <form id="create-account">
+      <label for="username">Username:</label>
+      <input type="text" placeholder="Your username" id="username" required />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" required />
+      <br />
+      <button type="submit">Create Account</button>
+    </form>
+
+    <script>
+      let form = document.getElementById("create-account");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        fetch("http://localhost:3000/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }).then((response) => {
+          if (response.status === 201) {
+            response.text().then((sessionToken) => {
+              console.log("Account created successfully!");
+
+              localStorage.setItem("username", username);
+              localStorage.setItem("sessionKey", sessionToken);
+
+              window.location.href = "feed.html";
+            });
+          } else {
+            console.error("Account creation failed.");
+          }
+        });
+      });
+    </script>
+    <a href="feed.html">back to feed</a>
+  </body>
+</html>

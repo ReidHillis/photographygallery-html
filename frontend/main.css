@@ -43,7 +43,7 @@
 }
 
 header {
-  background-color: #4267B2;
+  background-color: #4267b2;
   color: white;
   padding: 20px;
   box-shadow: 0 4px 6px grey;
@@ -57,8 +57,9 @@ body {
   background-color: #bfbfbf;
 }
 
-a, button {
-  background-color: #4267B2;
+a,
+button {
+  background-color: #4267b2;
   color: white;
   border: 1px solid black;
   border-radius: 4px;
@@ -71,7 +72,6 @@ a {
 button {
   padding: 5px 10px;
 }
-
 
 a:hover {
   background-color: #365890;
@@ -93,4 +93,12 @@ a:hover {
 .modal img {
   max-width: 90%;
   max-height: 90%;
+}
+
+h3 {
+  text-align: right;
+}
+
+#logout {
+  color: white;
 }

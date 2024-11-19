@@ -6,13 +6,14 @@
     <title>Upload a photo</title>
     <Link rel="stylesheet" href="main.css"></Link>
   </head>
+  <header id="header"></header>
   <body>
     <div class="uploadcontainer">
     <form action="" id="upload" class="upload">
-      <label for="title">Art Title:</label>
+      <label for="title">Photo Title:</label>
       <input type="text" placeholder="title" id="title" required /><br><br>
-      <label for="author">Art Creator:</label>
-      <input type="text" placeholder="author" id="author" required /><br><br>
+      <label for="description">Photo description:</label>
+      <input type="text" placeholder="description" id="description" required /><br><br>
       <label for="photo">Add Photo</label>
       <input type="file" id="photo" required /><br><br>
       <button type="submit">Upload your Photo</button>
@@ -20,6 +21,27 @@
   </div>
 
     <script>
+      let username = localStorage.getItem("username");
+      let sessionKey = localStorage.getItem("sessionKey");
+
+      if (!username){
+        window.location.href = "feed.html";
+      }
+
+      let header = document.getElementById("header");
+        let usernameDisplay = document.createElement("h3");
+        usernameDisplay.textContent = username;
+        logout = document.createElement("button");
+        logout.textContent ="logout";
+        logout.id = "logout";
+        logout.addEventListener("click", (event) => {
+          localStorage.removeItem('username');
+          localStorage.removeItem('sessionkey');
+          window.location.reload();
+        })
+        header.appendChild(usernameDisplay);
+        header.appendChild(logout);
+
       let form = document.getElementById("upload");
 
       form.addEventListener("submit", (event) => {
@@ -37,10 +59,10 @@
         reader.onloadend = () => {
           const photoData = {
             title: document.getElementById("title").value,
-            author: document.getElementById("author").value,
+            token: sessionKey,
             photoData: reader.result.split(",")[1],
+            description: document.getElementById("description").value
           };
-
           fetch("http://localhost:3000/uploadPhoto", {
             method: "POST",
             headers: {
@@ -54,6 +76,7 @@
                 window.location.href = "feed.html";
               } else {
                 console.error("Failed to upload photo");
+                console.error("error code " + response.status)
               }
             })
             .catch((error) => {

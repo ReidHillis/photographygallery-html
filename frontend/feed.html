@@ -6,7 +6,7 @@
     <title>Browse Photos</title>
     <Link rel="stylesheet" href="main.css"></Link>
   </head>
-  <header>
+  <header id="header">
       <h2>Photography Gallery</h2>
     </header>
   <body>
@@ -20,6 +20,41 @@
     </div>
     
     <script>
+
+      let username = localStorage.getItem("username");
+      let sessionKey = localStorage.getItem("sessionKey");
+
+      if (!username){
+        linktologin = document.createElement("a");
+        linktologin.textContent = "login";
+        linktologin.href = "login.html";
+        linktoregister = document.createElement("a");
+        linktoregister.textContent = "create an account"
+        linktoregister.href = "register.html";
+        document.body.appendChild(linktologin);
+        document.body.appendChild(linktoregister);
+      }
+
+      if (username){
+        let header = document.getElementById("header");
+        let usernameDisplay = document.createElement("h3");
+        usernameDisplay.textContent = username;
+        logout = document.createElement("button");
+        logout.textContent ="logout";
+        logout.id = "logout";
+        logout.addEventListener("click", (event) => {
+          localStorage.removeItem('username');
+          localStorage.removeItem('sessionkey');
+          window.location.reload();
+        })
+        header.appendChild(usernameDisplay);
+        header.appendChild(logout);
+        linktoupload = document.createElement("a");
+        linktoupload.textContent = "Upload a photo";
+        linktoupload.href = "upload.html";
+        document.body.appendChild(linktoupload);
+      }
+
       const photoContainer = document.getElementById("photoContainer");
 
       const modal = document.getElementById('photoModal');
@@ -60,12 +95,16 @@
               title.textContent = `Title: ${data.title}`;
 
               const artist = document.createElement("p");
-              artist.textContent = `Artist: ${data.author}`
+              artist.textContent = `Artist: ${data.author}`;
+
+              const description = document.createElement("p");
+              description.textContent = `description: ${data.description}`;
 
 
               artworkDiv.appendChild(img);
               artworkDiv.appendChild(title);
               artworkDiv.appendChild(artist);
+              artworkDiv.appendChild(description);
 
               photoContainer.appendChild(artworkDiv);
 
@@ -87,6 +126,5 @@
       });
       
     </script>
-    <a href="upload.html">Upload a Photo</a>
   </body>
 </html>
