@@ -166,13 +166,12 @@
       const modalImg = document.getElementById('modalImg');
       const closeModal = document.getElementById('closeModal');      
 
-       // Added search functionality (lines below)
       const searchInput = document.getElementById("searchInput");
       const searchButton = document.getElementById("searchButton");
 
       searchButton.addEventListener("click", () => {
         const searchQuery = searchInput.value.toLowerCase();
-        photoContainer.innerHTML = ""; // Clear existing photos
+        photoContainer.innerHTML = "";
 
         fetch(`http://localhost:3000/getAllPhotos`)
           .then((response) => response.json())
