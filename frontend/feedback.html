@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Messages</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .feedback { border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; }
+    .feedback h3 { margin: 0 0 5px; }
+  </style>
+</head>
+<body>
+  <h1>Feedback Messages</h1>
+  <div id="feedbackContainer"></div>
+  <script>
+    const feedbackContainer = document.getElementById('feedbackContainer');
+    const feedbackMessages = JSON.parse(localStorage.getItem('feedbackMessages')) || [];
+
+    if (feedbackMessages.length > 0) {
+      feedbackMessages.forEach(feedback => {
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.classList.add('feedback');
+
+        feedbackDiv.innerHTML = `
+          <h3>${feedback.name}</h3>
+          <p><strong>Email:</strong> ${feedback.email}</p>
+          <p>${feedback.message}</p>
+        `;
+
+        feedbackContainer.appendChild(feedbackDiv);
+      });
+    } else {
+      feedbackContainer.textContent = 'No feedback messages yet.';
+    }
+  </script>
+</body>
+</html>
